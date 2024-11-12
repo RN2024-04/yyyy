@@ -1,0 +1,22 @@
+import asyncio
+async def start_strongman(name, power):
+    # task=asyncio.create_task(
+    #     start_strongman())
+    print(f'Силач {name} начал соревнования.')
+    shar=1
+    for i in range(5):
+        await asyncio.sleep(4/power)
+        print(f'Силач {name} поднял {shar}.')
+        shar+=1
+        if shar==6:
+            print(f'Силач {name} закончил соревнования.')
+    await asyncio.sleep(power)
+async def start_tournament():
+    task1 = asyncio.create_task(start_strongman('Паша', 3))
+    task2 = asyncio.create_task(start_strongman('Денис', 4))
+    task3 = asyncio.create_task(start_strongman('Аполлон', 5))
+    await task1
+    await task2
+    await task3
+if __name__=='__main__':
+    asyncio.run(start_tournament())
